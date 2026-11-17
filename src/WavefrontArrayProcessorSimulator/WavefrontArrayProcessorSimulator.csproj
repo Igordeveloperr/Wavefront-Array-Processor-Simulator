@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D5F654E5-053F-4D81-994F-D5F6D13804A7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WaveVS</RootNamespace>
+    <AssemblyName>WaveVS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\Icons\Application.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.6.0.3\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.Windows.Forms.6.1.0\lib\net35\NLog.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\Attributes\NoOperandsAttribute.cs" />
+    <Compile Include="Enums\LineAddressOperandEnum.cs" />
+    <Compile Include="Enums\BufferOperandEnum.cs" />
+    <Compile Include="Enums\NumberSystemEnum.cs" />
+    <Compile Include="Enums\Attributes\OperandSpecAttribute.cs" />
+    <Compile Include="Enums\OperationEnum.cs" />
+    <Compile Include="Enums\PEStateEnum.cs" />
+    <Compile Include="Enums\RegisterOperandEnum.cs" />
+    <Compile Include="UI\Forms\WaveVSMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\WaveVSMain.Designer.cs">
+      <DependentUpon>WaveVSMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\CodeMemory\CodeLineTexture.cs" />
+    <Compile Include="UI\Controls\CodeMemory\CodeMemoryTexture.cs" />
+    <Compile Include="UI\Controls\MessageBoxEx.cs" />
+    <Compile Include="UI\Controls\ProcessorStructure\ProcessorElementStructure.cs" />
+    <Compile Include="Simulation\Memory\MainMemory.cs" />
+    <Compile Include="Simulation\Memory\MemoryModule.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\AddCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\Command.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\DivCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\MovCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\MulCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\SendCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\SendDownCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\SendRightCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\SubCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\WriteBuffersCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\MnemonicDecoder.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\MnemonicCommand.cs" />
+    <Compile Include="Simulation\ProcessorElements\IdStructure.cs" />
+    <Compile Include="Services\Dto\BinNumber.cs" />
+    <Compile Include="Services\NumberSystemsService.cs" />
+    <Compile Include="UI\Controls\CustomFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\MainMemory\MainMemoryTexture.cs" />
+    <Compile Include="UI\Controls\MainMemory\MemoryBankTexture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ProcessorElements\MemoryModuleTexture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ProcessorElements\PETexture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\MemoryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\MemoryWindow.Designer.cs">
+      <DependentUpon>MemoryWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Simulation\Memory\InputBuffer.cs" />
+    <Compile Include="Simulation\Memory\Register.cs" />
+    <Compile Include="Simulation\ProcessorElements\ProcessorElement.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\Commands\RegisterCommand.cs" />
+    <Compile Include="UI\Controls\CodeMemory\ProgramEditorAdapter.cs" />
+    <Compile Include="Services\TaskFileStore.cs" />
+    <Compile Include="UI\Forms\WaveVSMain.Tasks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ProcessorElements\PETextureGrid.Arrows.cs" />
+    <Compile Include="UI\Controls\ProcessorElements\PETextureGrid.Memory.cs" />
+    <Compile Include="UI\Controls\ProcessorElements\ArrowImageFactory.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Controls\ProcessorElements\PETextureGrid.cs" />
+    <Compile Include="Simulation\ProcessorElements\Programming\PEProgram.cs" />
+    <Compile Include="Simulation\Tasks\CodeLineData.cs" />
+    <Compile Include="Simulation\Tasks\MemoryModuleData.cs" />
+    <Compile Include="Simulation\Tasks\TaskData.cs" />
+    <Compile Include="Simulation\WaveFrontArrayProcessor.cs" />
+    <EmbeddedResource Include="UI\Forms\WaveVSMain.resx">
+      <LogicalName>WaveVS.WaveVSMain.resources</LogicalName>
+      <DependentUpon>WaveVSMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icons\Application.ico" />
+    <Content Include="Assets\Images\*.png">
+      <Link>img\%(Filename)%(Extension)</Link>
+      <TargetPath>img\%(Filename)%(Extension)</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="img\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
